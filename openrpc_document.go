@@ -4,6 +4,8 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
+
+	"github.com/iancoleman/orderedmap"
 )
 
 type Openrpc string
@@ -85,7 +87,7 @@ type ServerObjectVariable struct {
 	Description *ServerObjectVariableDescription `json:"description,omitempty"`
 	Enum        *ServerObjectVariableEnum        `json:"enum,omitempty"`
 }
-type ServerObjectVariables map[string]interface{}
+type ServerObjectVariables = orderedmap.OrderedMap
 type ServerObject struct {
 	Url         *ServerObjectUrl         `json:"url"`
 	Name        *ServerObjectName        `json:"name,omitempty"`
@@ -230,17 +232,17 @@ type StringArray []StringDoaGddGA
 // --- Default ---
 //
 // {}
-type Definitions map[string]interface{}
+type Definitions = orderedmap.OrderedMap
 
 // --- Default ---
 //
 // {}
-type Properties map[string]interface{}
+type Properties = orderedmap.OrderedMap
 
 // --- Default ---
 //
 // {}
-type PatternProperties map[string]interface{}
+type PatternProperties = orderedmap.OrderedMap
 type DependenciesSet struct {
 	JSONSchema  *JSONSchema
 	StringArray *StringArray
@@ -274,7 +276,7 @@ func (o DependenciesSet) MarshalJSON() ([]byte, error) {
 	return json.Marshal(out)
 }
 
-type Dependencies map[string]interface{}
+type Dependencies = orderedmap.OrderedMap
 type Enum []AlwaysTrue
 type SimpleTypes interface{}
 type ArrayOfSimpleTypes []SimpleTypes
@@ -734,13 +736,13 @@ func (o MethodOrReference) MarshalJSON() ([]byte, error) {
 }
 
 type Methods []MethodOrReference
-type SchemaComponents map[string]interface{}
-type LinkComponents map[string]interface{}
-type ErrorComponents map[string]interface{}
-type ExampleComponents map[string]interface{}
-type ExamplePairingComponents map[string]interface{}
-type ContentDescriptorComponents map[string]interface{}
-type TagComponents map[string]interface{}
+type SchemaComponents = orderedmap.OrderedMap
+type LinkComponents = orderedmap.OrderedMap
+type ErrorComponents = orderedmap.OrderedMap
+type ExampleComponents = orderedmap.OrderedMap
+type ExamplePairingComponents = orderedmap.OrderedMap
+type ContentDescriptorComponents = orderedmap.OrderedMap
+type TagComponents = orderedmap.OrderedMap
 type Components struct {
 	Schemas            *SchemaComponents            `json:"schemas,omitempty"`
 	Links              *LinkComponents              `json:"links,omitempty"`
