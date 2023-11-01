@@ -1,7 +1,9 @@
 package openrpc_document
 
-import "encoding/json"
-import "errors"
+import (
+	"encoding/json"
+	"errors"
+)
 
 type Openrpc string
 
@@ -281,31 +283,23 @@ type Type struct {
 }
 
 func (a *Type) UnmarshalJSON(bytes []byte) error {
-	var ok bool
 	var mySimpleTypes SimpleTypes
 	if err := json.Unmarshal(bytes, &mySimpleTypes); err == nil {
-		ok = true
 		a.SimpleTypes = &mySimpleTypes
+		return nil
 	}
 	var myArrayOfSimpleTypes ArrayOfSimpleTypes
 	if err := json.Unmarshal(bytes, &myArrayOfSimpleTypes); err == nil {
-		ok = true
 		a.ArrayOfSimpleTypes = &myArrayOfSimpleTypes
-	}
-	if ok {
 		return nil
 	}
 	return errors.New("failed to unmarshal any of the object properties")
 }
 func (o Type) MarshalJSON() ([]byte, error) {
-	out := []interface{}{}
 	if o.SimpleTypes != nil {
-		out = append(out, o.SimpleTypes)
+		return json.Marshal(o.SimpleTypes)
 	}
-	if o.ArrayOfSimpleTypes != nil {
-		out = append(out, o.ArrayOfSimpleTypes)
-	}
-	return json.Marshal(out)
+	return json.Marshal(o.ArrayOfSimpleTypes)
 }
 
 type Format string
