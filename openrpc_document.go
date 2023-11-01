@@ -313,6 +313,8 @@ type JSONSchemaObject struct {
 	Comment              *Comment                       `json:"$comment,omitempty"`
 	Title                *Title                         `json:"title,omitempty"`
 	Description          *Description                   `json:"description,omitempty"`
+	Required             *StringArray                   `json:"required,omitempty"`
+	Type                 *Type                          `json:"type,omitempty"`
 	Default              *AlwaysTrue                    `json:"default,omitempty"`
 	ReadOnly             *ReadOnly                      `json:"readOnly,omitempty"`
 	Examples             *Examples                      `json:"examples,omitempty"`
@@ -332,7 +334,6 @@ type JSONSchemaObject struct {
 	Contains             *JSONSchema                    `json:"contains,omitempty"`
 	MaxProperties        *NonNegativeInteger            `json:"maxProperties,omitempty"`
 	MinProperties        *NonNegativeIntegerDefaultZero `json:"minProperties,omitempty"`
-	Required             *StringArray                   `json:"required,omitempty"`
 	AdditionalProperties *JSONSchema                    `json:"additionalProperties,omitempty"`
 	Definitions          *Definitions                   `json:"definitions,omitempty"`
 	Properties           *Properties                    `json:"properties,omitempty"`
@@ -341,7 +342,6 @@ type JSONSchemaObject struct {
 	PropertyNames        *JSONSchema                    `json:"propertyNames,omitempty"`
 	Const                *AlwaysTrue                    `json:"const,omitempty"`
 	Enum                 *Enum                          `json:"enum,omitempty"`
-	Type                 *Type                          `json:"type,omitempty"`
 	Format               *Format                        `json:"format,omitempty"`
 	ContentMediaType     *ContentMediaType              `json:"contentMediaType,omitempty"`
 	ContentEncoding      *ContentEncoding               `json:"contentEncoding,omitempty"`
