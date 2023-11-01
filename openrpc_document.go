@@ -692,6 +692,8 @@ type MethodObject struct {
 	Name           *MethodObjectName            `json:"name"`
 	Description    *MethodObjectDescription     `json:"description,omitempty"`
 	Summary        *MethodObjectSummary         `json:"summary,omitempty"`
+	AuthType       []string                     `json:"auth_type,omitempty"`
+	RequiresPerm   []string                     `json:"requires_perm,omitempty"`
 	Servers        *Servers                     `json:"servers,omitempty"`
 	Tags           *MethodObjectTags            `json:"tags,omitempty"`
 	ParamStructure *MethodObjectParamStructure  `json:"paramStructure,omitempty"`
