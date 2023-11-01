@@ -194,31 +194,23 @@ type Items struct {
 }
 
 func (a *Items) UnmarshalJSON(bytes []byte) error {
-	var ok bool
 	var myJSONSchema JSONSchema
 	if err := json.Unmarshal(bytes, &myJSONSchema); err == nil {
-		ok = true
 		a.JSONSchema = &myJSONSchema
+		return nil
 	}
 	var mySchemaArray SchemaArray
 	if err := json.Unmarshal(bytes, &mySchemaArray); err == nil {
-		ok = true
 		a.SchemaArray = &mySchemaArray
-	}
-	if ok {
 		return nil
 	}
 	return errors.New("failed to unmarshal any of the object properties")
 }
 func (o Items) MarshalJSON() ([]byte, error) {
-	out := []interface{}{}
 	if o.JSONSchema != nil {
-		out = append(out, o.JSONSchema)
+		return json.Marshal(o.JSONSchema)
 	}
-	if o.SchemaArray != nil {
-		out = append(out, o.SchemaArray)
-	}
-	return json.Marshal(out)
+	return json.Marshal(o.SchemaArray)
 }
 
 type UniqueItems bool
