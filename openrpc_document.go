@@ -3,6 +3,7 @@ package openrpc_document
 import (
 	"encoding/json"
 	"errors"
+	"fmt"
 )
 
 type Openrpc string
@@ -293,7 +294,7 @@ func (a *Type) UnmarshalJSON(bytes []byte) error {
 		a.ArrayOfSimpleTypes = &myArrayOfSimpleTypes
 		return nil
 	}
-	return errors.New("failed to unmarshal any of the object properties")
+	return fmt.Errorf("failed to unmarshal object type: %#v", string(bytes))
 }
 func (o Type) MarshalJSON() ([]byte, error) {
 	if o.SimpleTypes != nil {
